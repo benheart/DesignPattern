@@ -6,5 +6,8 @@ package FactoryPattern;
  */
 public interface Shape {
     // add some comment
+
+
+    // another comment
     void draw();
 }
