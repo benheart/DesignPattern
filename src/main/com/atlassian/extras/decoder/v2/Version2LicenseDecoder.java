@@ -8,12 +8,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
-import java.security.Signature;
-import java.security.SignatureException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Properties;
@@ -42,7 +39,7 @@ public class Version2LicenseDecoder
     {
         try
         {
-            String pubKeyEncoded = "MIIBuDCCASwGByqGSM44BAEwggEfAoGBAP1/U4EddRIpUt9KnC7s5Of2EbdSPO9EAMMeP4C2USZpRV1AIlH7WT2NWPq/xfW6MPbLm1Vs14E7gB00b/JmYLdrmVClpJ+f6AR7ECLCT7up1/63xhv4O1fnxqimFQ8E+4P208UewwI1VBNaFpEy9nXzrith1yrv8iIDGZ3RSAHHAhUAl2BQjxUjC8yykrmCouuEC/BYHPUCgYEA9+GghdabPd7LvKtcNrhXuXmUr7v6OuqC+VdMCz0HgmdRWVeOutRZT+ZxBxCBgLRJFnEj6EwoFhO3zwkyjMim4TwWeotUfI0o4KOuHiuzpnWRbqN/C/ohNWLx+2J6ASQ7zKTxvqhRkImog9/hWuWfBpKLZl6Ae1UlZAFMO/7PSSoDgYUAAoGBAIvfweZvmGo5otwawI3no7Udanxal3hX2haw962KL/nHQrnC4FG2PvUFf34OecSK1KtHDPQoSQ+DHrfdf6vKUJphw0Kn3gXm4LS8VK/LrY7on/wh2iUobS2XlhuIqEc5mLAUu9Hd+1qxsQkQ50d0lzKrnDqPsM0WA9htkdJJw2nS";
+            String pubKeyEncoded = "MIIBuDCCASwGByqGSM44BAEwggEfAoGBAPpNdMkRXHTsJ42EwH4uI7znZWTGhfyL5JdKAyWpRfOrx7Z6jo1qUdWkAoclLhdsibYci7ozKWaiwnSk+6r+wl6H451paktdvgK0B/3OCF6U3nG2PEMEfTCRranA4/TRZP0cx/0i3F+ZJ3niwh7hHR1/m/yavEDeYETswnDC//axAhUA1qmerMYnm/9G/bddwe7YAd17Gv8CgYEAlYzKnZxelFNMJ8H/FuEPy+LoD5i8BFanFq+/aFp+slIXFtQevagHtmzMlezpRelWBoqqPfe3uOp1t/OX2QOfyNcMRmJ2FwR8EdyFdcFwEfrfj90lv3GfwQuBVgrD+0z3PTglhZAEKTGn04GEhVN77tt2JZO9m6h/Gylz2X2vpRYDgYUAAoGBALIrJXQwiTQX3LK6QuBfSVwmeIkwph09uWFoYOC7h725VdrBjbtLpxAUDuy3JD9nfV11uKC9Z+gzT/0r24R8iXuOjiEceWbE1SOvdn/HL5Vuqf8DwKAvwdnCKM10GExz9/Gtl+7uGtLWq+MxqrfNxaLJLTRwIWOBFqGm4idICRTB";
 
             KeyFactory keyFactory = KeyFactory.getInstance("DSA");
             PUBLIC_KEY = keyFactory.generatePublic(new X509EncodedKeySpec(Base64.decodeBase64("MIIBuDCCASwGByqGSM44BAEwggEfAoGBAP1/U4EddRIpUt9KnC7s5Of2EbdSPO9EAMMeP4C2USZpRV1AIlH7WT2NWPq/xfW6MPbLm1Vs14E7gB00b/JmYLdrmVClpJ+f6AR7ECLCT7up1/63xhv4O1fnxqimFQ8E+4P208UewwI1VBNaFpEy9nXzrith1yrv8iIDGZ3RSAHHAhUAl2BQjxUjC8yykrmCouuEC/BYHPUCgYEA9+GghdabPd7LvKtcNrhXuXmUr7v6OuqC+VdMCz0HgmdRWVeOutRZT+ZxBxCBgLRJFnEj6EwoFhO3zwkyjMim4TwWeotUfI0o4KOuHiuzpnWRbqN/C/ohNWLx+2J6ASQ7zKTxvqhRkImog9/hWuWfBpKLZl6Ae1UlZAFMO/7PSSoDgYUAAoGBAIvfweZvmGo5otwawI3no7Udanxal3hX2haw962KL/nHQrnC4FG2PvUFf34OecSK1KtHDPQoSQ+DHrfdf6vKUJphw0Kn3gXm4LS8VK/LrY7on/wh2iUobS2XlhuIqEc5mLAUu9Hd+1qxsQkQ50d0lzKrnDqPsM0WA9htkdJJw2nS".getBytes())));
@@ -137,7 +134,7 @@ public class Version2LicenseDecoder
             dIn.read(licenseText);
             byte[] hash = new byte[dIn.available()];
             dIn.read(hash);
-            try
+            /*try
             {
                 Signature signature = Signature.getInstance("SHA1withDSA");
                 signature.initVerify(PUBLIC_KEY);
@@ -157,7 +154,7 @@ public class Version2LicenseDecoder
             catch (NoSuchAlgorithmException e)
             {
                 throw new LicenseException(e);
-            }
+            }*/
             return licenseText;
         }
         catch (IOException e)
