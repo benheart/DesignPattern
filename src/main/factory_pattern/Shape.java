@@ -1,4 +1,4 @@
-package FactoryPattern;
+package factory_pattern;
 
 /**
  * Author: Ben Hu
