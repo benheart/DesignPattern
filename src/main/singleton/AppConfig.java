@@ -1,4 +1,4 @@
-package singleton_pattern;
+package singleton;
 
 /**
  * Created by Ben Hu on 2016/11/4.
